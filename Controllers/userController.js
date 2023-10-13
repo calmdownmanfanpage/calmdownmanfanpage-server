@@ -9,7 +9,7 @@ const jwt = require("jsonwebtoken");
  * jwt toekn 생성 함수
  */
 const createToken = (_id) => {
-  const jwtkey = process.env.local.JWT_SECRET_KEY;
+  const jwtkey = process.env.JWT_SECRET_KEY;
 
   return jwt.sign({ _id }, jwtkey, { expiresIn: "3d" });
 };

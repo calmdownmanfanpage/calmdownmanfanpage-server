@@ -2,9 +2,11 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const userRoute = require("./Routes/userRoute");
+const dotenv = require("dotenv");
 
 const app = express();
 require("dotenv").config();
+dotenv.config({ path: ".env.local" });
 
 //middleware functions
 app.use(express.json()); //json data 주고받기 가능
@@ -16,7 +18,7 @@ app.get("/", (req, res) => {
 });
 
 const port = process.env.PORT || 5000;
-const uri = process.env.local.ATLAS_URI;
+const uri = process.env.ATLAS_URI;
 
 app.listen(port, (req, res) => {
   console.log(`Server running on port : ${port}`);
