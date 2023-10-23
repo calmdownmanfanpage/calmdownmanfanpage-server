@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const userRoute = require("./Routes/userRoute");
+const memeRoute = require("./Routes/memeRoute");
 const dotenv = require("dotenv");
 
 const app = express();
@@ -12,6 +13,7 @@ dotenv.config({ path: ".env.local" });
 app.use(express.json()); //json data 주고받기 가능
 app.use(cors());
 app.use("/api/users", userRoute);
+app.use("/api/memes", memeRoute);
 
 app.get("/", (req, res) => {
   res.send("어서오세요 여러분의 채팅 api에~");
