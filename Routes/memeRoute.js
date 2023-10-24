@@ -9,14 +9,14 @@ router.get(
   asyncHandler(async (req, res) => {
     const memes = (await memeModel.find({}).lean()).map((e) => ({
       ...e,
-      src: `${process.env.BACKEND_URL}/api/memes/images/${e.src}`,
+      src: `${process.env.BACKEND_URL}/api/memes/images/memes/${e.src}`,
     }));
     res.status(200).json(memes);
   })
 );
 
-router.get("/images/:img", (req, res) => {
-  res.sendFile(req.params.img, { root: __dirname + "/../public/images/" });
+router.get("/images/memes/:img", (req, res) => {
+  res.sendFile(req.params.img, { root: __dirname + "/../public/images/memes" });
 });
 
 module.exports = router;
