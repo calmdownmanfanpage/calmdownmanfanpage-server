@@ -1,9 +1,8 @@
 const express = require("express");
-const {getPage, postLikes} = require("../Controllers/phraseController");
-
 const router = express.Router();
+const {getData, updateData} = require("../Controllers/phraseController");
 
-router.get("/", getPage);
-router.post("/likes", postLikes)
+router.get("/", getData);
+router.put("/update", updateData);
 
 module.exports = router;

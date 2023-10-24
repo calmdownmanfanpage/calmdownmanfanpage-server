@@ -14,7 +14,7 @@ app.use(express.json()); //json data 주고받기 가능
 app.use(cors());
 app.use("/api/users", userRoute);
 
-app.use("/dongseon", phraseRoute);
+app.use("/phrase", phraseRoute);
 
 app.get("/", (req, res) => {
   res.send("어서오세요 여러분의 서버에~");
@@ -23,8 +23,7 @@ app.get("/", (req, res) => {
 
 
 const port = process.env.PORT || 5000;
-// const uri = process.env.ATLAS_URI;
-const uri = `mongodb+srv://${process.env.USER_NAME}:${process.env.USER_PASS}@cluster0.ayoeach.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
+const uri = process.env.ATLAS_URI;
 
 app.listen(port, (req, res) => {
   console.log(`Server running on port : ${port}`);

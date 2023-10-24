@@ -1,10 +1,10 @@
 const phraseModel = require("../Models/phraseModel");
-const data = require("./phrase.json");
 
-const getPage = async (req, res) =>{
+const getData = async (req, res) =>{
+    console.clear();
     const pageId = req.query.pageId;
     try{
-        if(pageId>0){
+        if(pageId){
             const phraseData = await phraseModel.findOne({
                 contentId:pageId
             });
@@ -18,15 +18,18 @@ const getPage = async (req, res) =>{
     }
 }
 
-
-const postLikes = async (req, res) =>{
-    const {pageId, likes} = req.body
+const updateData = async (req, res) =>{
+    const {data} = req.body;
+    console.log(`contentID:${data.contentId} update - likes:${data.likes}, shared:${data.shared}`);
     try{
-        await phraseModel.updateOne({contentId: pageId}, {likes:likes})
-        res.status(200);
+        await phraseModel.updateOne({contentId: data.contentId}, {
+            likes: data.likes,
+            shared: data.shared,
+        })
+        res.status(200).send();
     }catch(err){
-        res.status(500).json(`postLIkes Error : ${err}`);
+        res.status(500).json(`updateData Error : ${err}`);
     }
 }
 
-module.exports = {getPage, postLikes};
+module.exports = {getData, updateData};
