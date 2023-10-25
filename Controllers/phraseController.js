@@ -1,7 +1,7 @@
 const phraseModel = require("../Models/phraseModel");
 
 const getData = async (req, res) =>{
-    console.clear();
+    // console.clear();
     const pageId = req.query.pageId;
     try{
         if(pageId){
@@ -20,7 +20,7 @@ const getData = async (req, res) =>{
 
 const updateData = async (req, res) =>{
     const {data} = req.body;
-    console.log(`contentID:${data.contentId} update - likes:${data.likes}, shared:${data.shared}`);
+    // console.log(`contentID:${data.contentId} update - likes:${data.likes}, shared:${data.shared}`);
     try{
         await phraseModel.updateOne({contentId: data.contentId}, {
             likes: data.likes,

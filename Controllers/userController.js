@@ -8,11 +8,11 @@ const jwt = require("jsonwebtoken");
  *
  * jwt toekn 생성 함수
  */
-const createToken = (_id) => {
-  const jwtkey = process.env.JWT_SECRET_KEY;
+// const createToken = (_id) => {
+//   const jwtkey = process.env.JWT_SECRET_KEY;
 
-  return jwt.sign({ _id }, jwtkey, { expiresIn: "3d" });
-};
+//   return jwt.sign({ _id }, jwtkey, { expiresIn: "3d" });
+// };
 
 //회원가입
 const registerUser = async (req, res) => {
@@ -37,9 +37,9 @@ const registerUser = async (req, res) => {
 
     await user.save(); //유저 저장
 
-    const token = createToken(user._id); //jwt 생성
+    // const token = createToken(user._id); //jwt 생성
 
-    res.status(200).json({ _id: user._id, name, email, token });
+    res.status(200).json({ _id: user._id, name, email });
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
@@ -60,9 +60,9 @@ const loginUser = async (req, res) => {
     if (!isValidPassword)
       return res.status(400).json("비밀번호가 일치하지 않습니다.");
 
-    const token = createToken(user._id);
+    // const token = createToken(user._id);
 
-    res.status(200).json({ _id: user._id, name: user.name, email, token });
+    res.status(200).json({ _id: user._id, name: user.name, email });
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
