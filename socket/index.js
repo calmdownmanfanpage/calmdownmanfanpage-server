@@ -1,6 +1,6 @@
 const { Server } = require("socket.io");
 
-const io = new Server({ cors: process.env.SOCKET_URL });
+const io = new Server({ cors: process.env.FRONTEND_URL });
 
 let onlineUsers = [];
 io.on("connection", (socket) => {
