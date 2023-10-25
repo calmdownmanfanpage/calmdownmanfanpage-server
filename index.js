@@ -18,16 +18,13 @@ app.use(cors());
 
 app.use("/api/users", userRoute); //라우터 미들웨어
 app.use("/api/chats", chatRoute); //라우터 미들웨어
-app.use("/api/message", messageRoute); //라우터 미들웨어
+app.use("/api/messages", messageRoute); //라우터 미들웨어
 app.use("/api/memes", memeRoute);
 app.use("/phrase", phraseRoute);
-
 
 app.get("/", (req, res) => {
   res.send("어서오세요 여러분의 서버에~");
 });
-
-
 
 const port = process.env.PORT || 5000;
 const uri = process.env.ATLAS_URI;

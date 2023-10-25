@@ -1,17 +1,19 @@
 const chatModel = require("../Models/chatModel");
 
 const createChat = async (req, res) => {
+  //firstId : sender
+  //secondID : receiver
   const { firstId, secondId } = req.body;
 
   try {
     const chat = await chatModel.findOne({
-      members: { $all: [firstId, secondId] },
+      members: { $all: [firstId, secondId] }, //해당 배열 모두 충족하는 값 찾기
     });
 
     if (chat) return res.status(200).json(chat);
 
     const newChat = new chatModel({
-      members: [firstId, secondId], //주어진 배열 모둔 값 충족하는 값
+      members: [firstId, secondId],
     });
 
     const response = await newChat.save();
@@ -28,7 +30,7 @@ const findUserChat = async (req, res) => {
 
   try {
     const chats = await chatModel.find({
-      members: { $in: [userId] }, //주어진 배열 안에 속하는 값
+      members: { $in: [userId] }, //$in을 사용하면 배열에 주어진 값 중 최소 한개의 일치하는 값을 가진 document를 검색
     });
 
     res.status(200).json(chats);
