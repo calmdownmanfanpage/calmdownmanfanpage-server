@@ -4,8 +4,8 @@ const createMessage = async (req, res) => {
   const { chatId, senderId, text } = req.body;
 
   const message = new messageModel({
-    chatId,
-    senderId,
+    chatId, //특정 채팅의 모든 메시지 불러올때 사용할 키값(채팅방 아이디)
+    senderId, //메시지 보낸 사람
     text,
   });
 
@@ -19,7 +19,7 @@ const createMessage = async (req, res) => {
   }
 };
 
-const getMeesage = async (req, res) => {
+const getMessages = async (req, res) => {
   const { chatId } = req.params;
 
   try {
@@ -32,4 +32,4 @@ const getMeesage = async (req, res) => {
   }
 };
 
-module.exports = { createMessage, getMeesage };
+module.exports = { createMessage, getMessages };

@@ -15,7 +15,7 @@ app.use(express.json()); //json data 주고받기 가능
 app.use(cors());
 app.use("/api/users", userRoute); //라우터 미들웨어
 app.use("/api/chats", chatRoute); //라우터 미들웨어
-app.use("/api/message", messageRoute); //라우터 미들웨어
+app.use("/api/messages", messageRoute); //라우터 미들웨어
 
 app.get("/", (req, res) => {
   res.send("어서오세요 여러분의 채팅 api에~");
