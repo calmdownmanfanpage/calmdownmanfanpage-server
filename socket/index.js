@@ -1,6 +1,6 @@
 const { Server } = require("socket.io");
 
-const io = new Server({ cors: "http://localhost:5173" });
+const io = new Server({ cors: process.env.SOCKET_URL });
 
 let onlineUsers = [];
 io.on("connection", (socket) => {
@@ -44,6 +44,4 @@ io.on("connection", (socket) => {
   });
 });
 
-io.listen(4000, () => {
-  console.log("server running at http://localhost:3000");
-});
+io.listen(4000);
