@@ -2,20 +2,25 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const userRoute = require("./Routes/userRoute");
+const phraseRoute = require("./Routes/phraseRoute");
 const dotenv = require("dotenv");
 
 const app = express();
 require("dotenv").config();
 dotenv.config({ path: ".env.local" });
 
-//middleware functions
+// middleware functions
 app.use(express.json()); //json data 주고받기 가능
 app.use(cors());
 app.use("/api/users", userRoute);
 
+app.use("/phrase", phraseRoute);
+
 app.get("/", (req, res) => {
-  res.send("어서오세요 여러분의 채팅 api에~");
+  res.send("어서오세요 여러분의 서버에~");
 });
+
+
 
 const port = process.env.PORT || 5000;
 const uri = process.env.ATLAS_URI;
